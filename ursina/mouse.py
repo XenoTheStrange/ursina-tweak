@@ -142,6 +142,25 @@ class Mouse:
         elif key.endswith('mouse up'):
             self.delta_drag = Vec3(self.x-self.start_x, self.y-self.start_y, 0)
 
+        if key == 'right mouse down':
+            self.right = True
+            if self.hovered_entity:
+                if hasattr(self.hovered_entity, 'on_right_click'):
+                    self.hovered_entity.on_right_click()
+
+                    for s in self.hovered_entity.scripts:
+                        if hasattr(s, 'on_right_click') and s.on_click:
+                            s.on_right_click()
+        if key == 'middle mouse down':
+            self.middle = True
+            if self.hovered_entity:
+                if hasattr(self.hovered_entity, 'on_middle_click'):
+                    self.hovered_entity.on_middle_click()
+
+                    for s in self.hovered_entity.scripts:
+                        if hasattr(s, 'on_middle_click') and s.on_click:
+                            s.on_middle_click()
+
         if key == 'left mouse down':
             self.left = True
             if self.hovered_entity:
@@ -172,12 +191,8 @@ class Mouse:
 
         if key == 'left mouse up':
             self.left = False
-        if key == 'right mouse down':
-            self.right = True
         if key == 'right mouse up':
             self.right = False
-        if key == 'middle mouse down':
-            self.middle = True
         if key == 'middle mouse up':
             self.middle = False
 
