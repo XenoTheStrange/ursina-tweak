@@ -424,6 +424,22 @@ class Entity(NodePath, metaclass=PostInitCaller):
             raise TypeError(f'on_click must be a callabe, not {type(value)}')
         self._on_click = value
 
+    def on_right_click_getter(self):
+        return getattr(self, '_on_right_click', None)
+
+    def on_right_click_setter(self, value):
+        if not callable(value):
+            raise TypeError(f'on_right_click must be a callabe, not {type(value)}')
+        self._on_right_click = value
+
+    def on_middle_click_getter(self):
+        return getattr(self, '_on_middle_click', None)
+
+    def on_middle_click_setter(self, value):
+        if not callable(value):
+            raise TypeError(f'on_middle_click must be a callabe, not {type(value)}')
+        self._on_middle_click = value
+
 
     def origin_getter(self):
         return getattr(self, '_origin', Vec3.zero)

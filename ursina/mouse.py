@@ -145,7 +145,7 @@ class Mouse:
         if key == 'right mouse down':
             self.right = True
             if self.hovered_entity:
-                if hasattr(self.hovered_entity, 'on_right_click'):
+                if self.hovered_entity.on_right_click:
                     self.hovered_entity.on_right_click()
 
                     for s in self.hovered_entity.scripts:
@@ -154,7 +154,7 @@ class Mouse:
         if key == 'middle mouse down':
             self.middle = True
             if self.hovered_entity:
-                if hasattr(self.hovered_entity, 'on_middle_click'):
+                if self.hovered_entity.on_middle_click:
                     self.hovered_entity.on_middle_click()
 
                     for s in self.hovered_entity.scripts:
